@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes  # Elevate privileges to ensure users can be created
+  tasks:
+    - name: Create user account
+      user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512') }}"
+        state: present
+        groups: "admin"

@@ -1,0 +1,12 @@
+---
+- name: Create Local User Accounts
+  hosts: desktops
+  become: yes  # Elevate privileges to ensure users can be created
+  tasks:
+    - name: Create users
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:  # 'with_items' has been replaced with 'loop', the recommended method
+        - user1
+        - user2
